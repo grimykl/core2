@@ -1,5 +1,7 @@
 package sn.grimykl.invoise;
 
+import sn.grimykl.invoise.controller.InvoiceController;
+import sn.grimykl.invoise.controller.InvoiceControllerMichel;
 import sn.grimykl.invoise.entity.Invoice;
 import sn.grimykl.invoise.entity.Movie;
 import sn.grimykl.invoise.service.InvoiceService;
@@ -16,6 +18,7 @@ public class App
     public static void main( String[] args )
     {
         String next = "";
+        int config;
         /*do {
             System.out.println( "What is the customer name?" );
             Scanner sc = new Scanner(System.in);
@@ -29,7 +32,7 @@ public class App
             next = sc.nextLine();
         } while (next.equalsIgnoreCase("Y"));*/
 
-        do {
+        /*do {
             System.out.println( "What is the movie title?" );
             Scanner sc = new Scanner(System.in);
             String title = sc.nextLine();
@@ -48,7 +51,26 @@ public class App
             System.out.println( "Do you want to add another movie? Y/N" );
             sc = new Scanner(System.in);
             next = sc.nextLine();
-        } while (next.equalsIgnoreCase("Y"));
+        } while (next.equalsIgnoreCase("Y"));*/
 
+        do {
+            System.out.println( "In what configuration are you ? Console : 1 Or Web : 2" );
+            Scanner sc = new Scanner(System.in);
+            config = sc.nextInt();
+
+            if (config == 1) {
+                InvoiceController invoiceController = new InvoiceController();
+                invoiceController.createInvoiceUsingConsole();
+            } else if (config == 2) {
+                InvoiceControllerMichel invoiceControllerMichel = new InvoiceControllerMichel();
+                invoiceControllerMichel.createInvoiceUsingWebForm();
+            } else {
+                System.out.println( "Bad answer. Please enter -> Console : 1 Or Web : 2" );
+            }
+
+            System.out.println( "Do you want to test again? Y/N" );
+            sc = new Scanner(System.in);
+            next = sc.nextLine();
+        } while (next.equalsIgnoreCase("Y"));
     }
 }
